@@ -1,0 +1,30 @@
+bool lightDetector() {
+	if(){
+		return true;
+	} else {
+		return false;
+	}
+}
+
+void setup() {    
+    bool fertig = false;
+    char ausgabe[];
+    string ausgabeFertig;
+    int charAt = 0;
+}
+
+void loop () {
+    bool light = lightDetector();
+    switch(light) {
+        case true:
+            delay(500);
+            light = lightDetector();
+            switch(light) {
+                case true:
+                    
+            }
+            break;
+        case false:
+            break;
+    }
+}
