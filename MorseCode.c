@@ -5,8 +5,11 @@
 // lange lange Pause = 1500ms (zwischen Wörtern)
 // end Pause = 2000ms (Ende der Übertragung)
 
+int sensorEingang = A0;
+int sensorWert = analogRead(sensorEingang);
+
 bool lightDetector() {
-	if(sensor > x){
+	if(sensorWert > x){
 		return true;
 	} else {
 		return false;
@@ -14,32 +17,48 @@ bool lightDetector() {
 }
 
 void setup() {
+
     bool fertig = false;
     char ausgabe[];
     string ausgabeFertig;
     int charAt = 0;
+
+	int x = sensorWert + toleranz;
+
+	Serial.begin(9600);
+	pinMode ()
 }
 
 void loop () {
     bool light = lightDetector();
     switch(light) {
-        case true:									// true
+        case true:									// 1
             delay(500);
             light = lightDetector();
             switch(light) {
-                case true:							// true true
+                case true:							// 11
 
                     break;
-				case false:							// true false => .
+				case false:							// 10 => .
 					ausgabe[charAt] = "E";
 					delay(500);
 					light = lightDetector();
 					switch(light) {
-						case true:					//true false true
-
+						case true:					// 101
+							ausgabe[charAt] = "I";
+							delay(500);
+							light = lightDetector();
+							switch (light) {
+								case true:			// 1011
+										ausgabe[charAt] = "A";
+									break;
+								case false:			//1010
+										charAt++;
+									break;
+							}
 						break;
-						case false:					// true false false => E
-						charAt= charAt + 1;
+						case false:					// 100 => E
+						charAt++;
 						break;
 					}
 
